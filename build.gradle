@@ -1,0 +1,56 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.0.0'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'sh'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+ext {
+	resilience4jVersion = "2.1.0"
+}
+
+dependencies {
+	runtimeOnly 'com.h2database:h2'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	runtimeOnly 'mysql:mysql-connector-java'
+
+
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'junit:junit:4.13.1'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+//	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	testCompileOnly 'org.projectlombok:lombok:'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+
+//	implementation ("io.github.resilience4j:resilience4j-circuitbreaker:${resilence4jVersion}")
+//	implementation ("io.github.resilience4j:resilience4j-bulkhead:${resilence4jVersion}")
+//	implementation ("io.github.resilience4j:resilience4j-timelimiter:${resilence4jVersion}")
+//	implementation ("io.github.resilience4j:resilience4j-annotations:${resilence4jVersion}")
+//	implementation ("io.github.resilience4j:resilience4j-all:${resilence4jVersion}")
+//	implementation ("io.github.resilience4j:resilience4j-metrics:${resilence4jVersion}")
+	implementation("io.github.resilience4j:resilience4j-spring-boot3:${resilience4jVersion}")
+	implementation('org.springframework.boot:spring-boot-starter-actuator')
+	implementation('org.springframework.boot:spring-boot-starter-aop')
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
