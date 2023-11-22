@@ -26,30 +26,3 @@ spring:
 #    redis:
 #      host: 127.0.0.1
 #      port: 6379
-
-resilience4j.circuitbreaker:
-    configs:
-      default:
-        slidingWindowType: COUNT_BASED
-        slidingWindowSize: 10
-        permittedNumberOfCallsInHalfOpenState: 10
-        waitDurationInOpenState: 30000 # 열림 상태를 유지하는 시간, 해당 시간이후 반열림 상태로 변경된다.
-        failureRateThreshold: 30 # 실패한 호출에 대한 임계값(백분율)으로 이 값을 초과하면 서킷이 열린다.
-        eventConsumerBufferSize: 10
-        registerHealthIndicator: true # actuator 정보 노출을 위한 설정
-        ignore-exceptions:
-          - java.lang.IllegalStateException
-    instances:
-      testApi:
-        baseConfig: default
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include:
-          - "*" # 테스트를 위해 actuator 전체 노출
-
-  health:
-    circuitbreakers:
-      enabled: true # circuitbreakers 정보 노출

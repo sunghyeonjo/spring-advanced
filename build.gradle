@@ -19,10 +19,6 @@ repositories {
 }
 
 
-ext {
-	resilience4jVersion = "2.1.0"
-}
-
 dependencies {
 	runtimeOnly 'com.h2database:h2'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -40,14 +36,6 @@ dependencies {
 	testCompileOnly 'org.projectlombok:lombok:'
 	testAnnotationProcessor 'org.projectlombok:lombok'
 
-//	implementation ("io.github.resilience4j:resilience4j-circuitbreaker:${resilence4jVersion}")
-//	implementation ("io.github.resilience4j:resilience4j-bulkhead:${resilence4jVersion}")
-//	implementation ("io.github.resilience4j:resilience4j-timelimiter:${resilence4jVersion}")
-//	implementation ("io.github.resilience4j:resilience4j-annotations:${resilence4jVersion}")
-//	implementation ("io.github.resilience4j:resilience4j-all:${resilence4jVersion}")
-//	implementation ("io.github.resilience4j:resilience4j-metrics:${resilence4jVersion}")
-	implementation("io.github.resilience4j:resilience4j-spring-boot3:${resilience4jVersion}")
-	implementation('org.springframework.boot:spring-boot-starter-actuator')
 	implementation('org.springframework.boot:spring-boot-starter-aop')
 }
 
